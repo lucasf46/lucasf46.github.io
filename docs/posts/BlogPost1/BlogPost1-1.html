@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Lucas Flemming">
+<meta name="dcterms.date" content="2023-01-10">
+<meta name="description" content="Classifying Palmer Penguins">
 
-<title>My Awesome CSCI 0451 Blog - ABSTRACT</title>
+<title>My Awesome CSCI 0451 Blog - Palmer Penguins Blog Post</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -168,14 +171,31 @@ background-size: cover;
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">ABSTRACT</h1>
-                      </div>
+      <h1 class="title">Palmer Penguins Blog Post</h1>
+                  <div>
+        <div class="description">
+          Classifying Palmer Penguins
+        </div>
+      </div>
+                </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Lucas Flemming </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 10, 2023</p>
+      </div>
+    </div>
     
       
     </div>
@@ -194,7 +214,7 @@ background-size: cover;
 
 <section id="abstract" class="level1">
 <h1>ABSTRACT</h1>
-<div id="cell-1" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>train_url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/PhilChodrow/ml-notes/main/data/palmer-penguins/train.csv"</span></span>
@@ -203,7 +223,7 @@ background-size: cover;
 </section>
 <section id="data-preparation" class="level1">
 <h1>DATA PREPARATION</h1>
-<div id="cell-3" class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>le <span class="op">=</span> LabelEncoder()</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>le.fit(train[<span class="st">"Species"</span>])</span>
@@ -444,7 +464,7 @@ background-size: cover;
 <section id="explore" class="level1">
 <h1>EXPLORE:</h1>
 <p>Create two visualizations of the data and one summary table.</p>
-<div id="cell-5" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -502,7 +522,7 @@ Gentoo penguin (Pygoscelis papua)         Biscoe              47.504878</code></
 </section>
 <section id="feature-selection" class="level1">
 <h1>FEATURE SELECTION:</h1>
-<div id="cell-7" class="cell" data-execution_count="4">
+<div id="cell-8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -564,7 +584,7 @@ Features: ['Culmen Length (mm)', 'Body Mass (g)', 'Sex_MALE'], LR Accuracy: 0.97
 </section>
 <section id="testing" class="level1">
 <h1>TESTING</h1>
-<div id="cell-9" class="cell" data-execution_count="5">
+<div id="cell-10" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>test_url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/PhilChodrow/ml-notes/main/data/palmer-penguins/test.csv"</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> pd.read_csv(test_url)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>test_clf <span class="op">=</span> DecisionTreeClassifier(random_state<span class="op">=</span><span class="dv">0</span>, max_depth<span class="op">=</span> <span class="dv">7</span>)</span>
@@ -579,7 +599,7 @@ Features: ['Culmen Length (mm)', 'Body Mass (g)', 'Sex_MALE'], LR Accuracy: 0.97
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>Test_score <span class="op">=</span> test_clf.score(X_test[test_cols], y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="6">
+<div id="cell-11" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>X_test[test_cols]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -683,7 +703,7 @@ Features: ['Culmen Length (mm)', 'Body Mass (g)', 'Sex_MALE'], LR Accuracy: 0.97
 </section>
 <section id="plotting-decision-regions" class="level1">
 <h1>PLOTTING DECISION REGIONS</h1>
-<div id="cell-12" class="cell" data-execution_count="7">
+<div id="cell-13" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Patch</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_regions(model, X, y):</span>
@@ -736,7 +756,7 @@ Features: ['Culmen Length (mm)', 'Body Mass (g)', 'Sex_MALE'], LR Accuracy: 0.97
 <span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>      </span>
 <span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>      plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-13" class="cell" data-execution_count="8">
+<div id="cell-14" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plot_regions(test_clf, X_test[test_cols], y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -749,7 +769,7 @@ Features: ['Culmen Length (mm)', 'Body Mass (g)', 'Sex_MALE'], LR Accuracy: 0.97
 </section>
 <section id="confusion-matrix" class="level1">
 <h1>CONFUSION MATRIX</h1>
-<div id="cell-15" class="cell" data-execution_count="9">
+<div id="cell-16" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>y_test_pred <span class="op">=</span> test_clf.predict(X_test[test_cols])</span>
