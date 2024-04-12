@@ -2,8 +2,12 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/goal-setting.html",
+      "/posts/BlogPost1-1.html",
+      "/posts/BlogPost2-2.html",
       "/posts/new-test-post/index.html",
       "/posts/new-new-test-post/index.html",
+      "/posts/BlogPost3/BlogPost3-3.html",
       "/posts/example-blog-post/index.html"
     ]
   }
