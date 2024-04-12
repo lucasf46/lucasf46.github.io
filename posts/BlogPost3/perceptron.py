@@ -80,7 +80,6 @@ class Perceptron(LinearModel):
     def grad(self, X, y):
         
         score = self.score(X)
-        X.squeeze()
         return ((score * y) < 0) * (X * y)
 
 class PerceptronOptimizer:
