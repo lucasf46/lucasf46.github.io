@@ -1381,10 +1381,12 @@ Profit per Person:  5578.816856325797</code></pre>
 </section>
 <section id="part-f-evaluate-your-model-from-the-borrowers-perspective" class="level1">
 <h1>Part F: Evaluate your Model from the Borrower’s Perspective</h1>
-<p>Is it more difficult for people in certain age groups to access credit under your proposed system?</p>
-<div id="cell-38" class="cell" data-execution_count="872">
+<section id="is-it-more-difficult-for-people-in-certain-age-groups-to-access-credit-under-your-proposed-system" class="level2">
+<h2 class="anchored" data-anchor-id="is-it-more-difficult-for-people-in-certain-age-groups-to-access-credit-under-your-proposed-system">Is it more difficult for people in certain age groups to access credit under your proposed system?</h2>
+<p>Similar to the summary table used earlier in the post, we can create age brackets to see what age groups the banks feel confident in, as indicated by the model and the repay/default probability that is compared with the threshold.</p>
+<div id="cell-39" class="cell" data-execution_count="872">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Income bins</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>,  <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="bu">float</span>(<span class="st">'inf'</span>)]  </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="bu">float</span>(<span class="st">'inf'</span>)]  </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels for bins</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">'0-20'</span>, <span class="st">'20-30'</span>, <span class="st">'30-40'</span>, <span class="st">'40-50'</span>, <span class="st">'50-60'</span>, <span class="st">'60-70'</span>, <span class="st">'70-80'</span>, <span class="st">'80+'</span>]</span>
@@ -1453,8 +1455,13 @@ Profit per Person:  5578.816856325797</code></pre>
 </div>
 </div>
 </div>
-<p>Is it more difficult for people to get loans in order to pay for medical expenses? How does this compare with the actual rate of default in that group?</p>
-<p>What about people seeking loans for business ventures or education? How does a person’s income level impact the ease with which they can access credit under your decision system?</p>
+</section>
+<section id="is-it-more-difficult-for-people-to-get-loans-in-order-to-pay-for-medical-expenses-how-does-this-compare-with-the-actual-rate-of-default-in-that-group" class="level2">
+<h2 class="anchored" data-anchor-id="is-it-more-difficult-for-people-to-get-loans-in-order-to-pay-for-medical-expenses-how-does-this-compare-with-the-actual-rate-of-default-in-that-group">Is it more difficult for people to get loans in order to pay for medical expenses? How does this compare with the actual rate of default in that group?</h2>
+</section>
+<section id="what-about-people-seeking-loans-for-business-ventures-or-education-how-does-a-persons-income-level-impact-the-ease-with-which-they-can-access-credit-under-your-decision-system" class="level2">
+<h2 class="anchored" data-anchor-id="what-about-people-seeking-loans-for-business-ventures-or-education-how-does-a-persons-income-level-impact-the-ease-with-which-they-can-access-credit-under-your-decision-system">What about people seeking loans for business ventures or education? How does a person’s income level impact the ease with which they can access credit under your decision system?</h2>
+</section>
 </section>
 <section id="part-g-write-and-reflect" class="level1">
 <h1>Part G: Write and Reflect</h1>
