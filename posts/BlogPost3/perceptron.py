@@ -1,4 +1,7 @@
-# Three Classes
+"""
+Implementation of the Perceptron algorithm using three classes: LinearModel, Perceptron (which inherits from LinearModel), and
+PerceptronOptimizer.
+"""
 
 import torch
 
@@ -91,6 +94,11 @@ class PerceptronOptimizer:
         """
         Compute one step of the perceptron update using the feature matrix X 
         and target vector y. 
+
+        ARGUMENTS: 
+            X, torch.Tensor: the feature matrix.
+
+            y, torch.Tensor: the target vector. 
         """
 
         loss = self.model.loss(X, y)
