@@ -1019,62 +1019,39 @@ Profit per Person:  5532.769128695611</code></pre>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>test_total_profits <span class="op">=</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-28" class="cell" data-execution_count="865">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterating through threshold values</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#test_thresholds = np.linspace(0, 1, 100)</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#test_max_profit = 0</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#max_profit = float('-inf')</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#test_optimal_threshold = 0</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#for test_threshold in test_thresholds:</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#    test_total_profit = calc_profit(X_test, y_test, test_threshold)</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#    total_profits.append(total_profit)</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#    # Update max_profit and optimal_threshold if total_profit is higher</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#    if total_profit &gt; max_profit:</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#        max_profit = total_profit</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#        optimal_threshold = threshold</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">#print("Optimal Threshold:", optimal_threshold)</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">#print("Max Profit:", max_profit)</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">#print("Profit per Person: ", max_profit / len(X_train))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Use the calc_profit function with the threshold (0.5656) from earlier that resulted in the highest expected profit.</p>
-<div id="cell-30" class="cell" data-execution_count="866">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>test_threshold <span class="op">=</span> optimal_threshold</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>total_test_profit <span class="op">=</span> calc_profit(X_test, y_test, test_threshold)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Expected profit with test data: </span><span class="sc">{</span>total_test_profit<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Profit per Person: "</span>, total_test_profit <span class="op">/</span> <span class="bu">len</span>(X_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-29" class="cell" data-execution_count="866">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>test_threshold <span class="op">=</span> optimal_threshold</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>total_test_profit <span class="op">=</span> calc_profit(X_test, y_test, test_threshold)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Expected profit with test data: </span><span class="sc">{</span>total_test_profit<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Profit per Person: "</span>, total_test_profit <span class="op">/</span> <span class="bu">len</span>(X_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Expected profit with test data: 31972199.40
 Profit per Person:  5578.816856325797</code></pre>
 </div>
 </div>
 <p>Let’s see where ths expected profit using the testing data measures up on our graph of expected profits from the training data.</p>
-<div id="cell-32" class="cell" data-execution_count="867">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale the test_threshold data point accordingly</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>test_threshold <span class="op">=</span> test_threshold <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>total_profits)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(y<span class="op">=</span>total_test_profit, x<span class="op">=</span>test_threshold, color<span class="op">=</span><span class="st">"red"</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Threshold Value"</span>)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Expected Profit ($)"</span>)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Expected Bank Profit vs. Default Probability Threshold"</span>)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-31" class="cell" data-execution_count="867">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale the test_threshold data point accordingly</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>test_threshold <span class="op">=</span> test_threshold <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>total_profits)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(y<span class="op">=</span>total_test_profit, x<span class="op">=</span>test_threshold, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Threshold Value"</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Expected Profit ($)"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Expected Bank Profit vs. Default Probability Threshold"</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="BlogPost2-2_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="BlogPost2-2_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The red dot is the demonstrates the significant negative difference in expected profit between the testing and training data at that optimal training threshold.</p>
-<div id="cell-34" class="cell" data-execution_count="868">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>X_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-33" class="cell" data-execution_count="868">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>X_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="868">
 <div>
 
@@ -1383,23 +1360,22 @@ Profit per Person:  5578.816856325797</code></pre>
 <h1>Part F: Evaluate your Model from the Borrower’s Perspective</h1>
 <section id="is-it-more-difficult-for-people-in-certain-age-groups-to-access-credit-under-your-proposed-system" class="level2">
 <h2 class="anchored" data-anchor-id="is-it-more-difficult-for-people-in-certain-age-groups-to-access-credit-under-your-proposed-system">Is it more difficult for people in certain age groups to access credit under your proposed system?</h2>
-<p>Similar to the summary table used earlier in the post, we can create age brackets to see what age groups the banks feel confident in, as indicated by the model and the repay/default probability that is compared with the threshold.</p>
-<div id="cell-39" class="cell" data-execution_count="872">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Income bins</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="bu">float</span>(<span class="st">'inf'</span>)]  </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels for bins</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">'0-20'</span>, <span class="st">'20-30'</span>, <span class="st">'30-40'</span>, <span class="st">'40-50'</span>, <span class="st">'50-60'</span>, <span class="st">'60-70'</span>, <span class="st">'70-80'</span>, <span class="st">'80+'</span>]</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># New column in data frame: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.cut.html</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>X_test[<span class="st">'age_bins'</span>] <span class="op">=</span> pd.cut(X_test[<span class="st">'person_age'</span>], bins<span class="op">=</span>bins, labels<span class="op">=</span>labels, right<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Group by the income bins and calculate the mean loan amount for each category</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>summary_table3 <span class="op">=</span> X_test.groupby(<span class="st">'age_bins'</span>, observed<span class="op">=</span><span class="va">True</span>).agg({<span class="st">'Default Unlikely'</span>: <span class="st">'mean'</span>, <span class="st">'Correct Assumption'</span>: <span class="st">'mean'</span>}).reset_index()</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>summary_table3.columns <span class="op">=</span> [<span class="st">"Age Bins"</span>, <span class="st">"Avg Prob of Repay (at Training Optimal Threshold)"</span>, <span class="st">"Avg Bank Assumption"</span>]</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>summary_table3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="872">
+<div id="cell-36" class="cell" data-execution_count="873">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Income bins</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="bu">float</span>(<span class="st">'inf'</span>)]  </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels for bins</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">'0-20'</span>, <span class="st">'20-30'</span>, <span class="st">'30-40'</span>, <span class="st">'40-50'</span>, <span class="st">'50-60'</span>, <span class="st">'60-70'</span>, <span class="st">'70-80'</span>, <span class="st">'80+'</span>]</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># New column in data frame: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.cut.html</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>X_test[<span class="st">'age_bins'</span>] <span class="op">=</span> pd.cut(X_test[<span class="st">'person_age'</span>], bins<span class="op">=</span>bins, labels<span class="op">=</span>labels, right<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Group by the income bins and calculate the mean loan amount for each category</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>summary_table3 <span class="op">=</span> X_test.groupby(<span class="st">'age_bins'</span>, observed<span class="op">=</span><span class="va">True</span>).agg({<span class="st">'Default Unlikely'</span>: <span class="st">'mean'</span>, <span class="st">'Correct Assumption'</span>: <span class="st">'mean'</span>, <span class="st">'Total Profit'</span>: <span class="st">'mean'</span>}).reset_index()</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>summary_table3.columns <span class="op">=</span> [<span class="st">"Age Bins"</span>, <span class="st">"Avg Prob of Repay (at Training Optimal Threshold)"</span>, <span class="st">"Avg Bank Assumption"</span>, <span class="st">"Avg Total Profit"</span>]</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>summary_table3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="873">
 <div>
 
 
@@ -1410,6 +1386,7 @@ Profit per Person:  5578.816856325797</code></pre>
 <th data-quarto-table-cell-role="th">Age Bins</th>
 <th data-quarto-table-cell-role="th">Avg Prob of Repay (at Training Optimal Threshold)</th>
 <th data-quarto-table-cell-role="th">Avg Bank Assumption</th>
+<th data-quarto-table-cell-role="th">Avg Total Profit</th>
 </tr>
 </thead>
 <tbody>
@@ -1418,36 +1395,42 @@ Profit per Person:  5578.816856325797</code></pre>
 <td>20-30</td>
 <td>0.868872</td>
 <td>0.175803</td>
+<td>5455.469283</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>30-40</td>
 <td>0.890895</td>
 <td>0.165620</td>
+<td>5930.292986</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>40-50</td>
 <td>0.903846</td>
 <td>0.150000</td>
+<td>5623.639173</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>50-60</td>
 <td>0.904762</td>
 <td>0.166667</td>
+<td>5831.695471</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>60-70</td>
 <td>0.750000</td>
 <td>0.250000</td>
+<td>9409.626847</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>70-80</td>
 <td>1.000000</td>
 <td>0.500000</td>
+<td>2957.459942</td>
 </tr>
 </tbody>
 </table>
@@ -1458,6 +1441,58 @@ Profit per Person:  5578.816856325797</code></pre>
 </section>
 <section id="is-it-more-difficult-for-people-to-get-loans-in-order-to-pay-for-medical-expenses-how-does-this-compare-with-the-actual-rate-of-default-in-that-group" class="level2">
 <h2 class="anchored" data-anchor-id="is-it-more-difficult-for-people-to-get-loans-in-order-to-pay-for-medical-expenses-how-does-this-compare-with-the-actual-rate-of-default-in-that-group">Is it more difficult for people to get loans in order to pay for medical expenses? How does this compare with the actual rate of default in that group?</h2>
+<div id="cell-38" class="cell" data-execution_count="922">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with the individuals with medical loan intent</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Medical_analysis <span class="op">=</span> X_test[X_test[<span class="st">"loan_intent_MEDICAL"</span>]]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering for people who were given loans, because the probability of not defaulting was above a certain threshold</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>PredDefaultMedical <span class="op">=</span> Medical_analysis[Medical_analysis[<span class="st">"Default Unlikely"</span>] <span class="op">==</span> <span class="dv">0</span>]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>ActualDefaultMedical <span class="op">=</span> PredDefaultMedical[PredDefaultMedical[<span class="st">"Correct Assumption"</span>] <span class="op">==</span> <span class="dv">1</span>]</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to find average predicted probability</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>AvgMedicalProb <span class="op">=</span> Medical_analysis.agg({<span class="st">"Default Prob"</span> : <span class="st">"mean"</span>})</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate summary table to show number of borrowers with </span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>summary_table4 <span class="op">=</span> PredDefaultMedical.groupby(<span class="st">"Correct Assumption"</span>).agg({<span class="st">'Default Unlikely'</span>: <span class="st">'count'</span>})</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>AvgMedicalProb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="922">
+<pre><code>Default Prob    0.746771
+dtype: float64</code></pre>
+</div>
+</div>
+<div id="cell-39" class="cell" data-execution_count="923">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>summary_table4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="923">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Default Unlikely</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Correct Assumption</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>130</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>27</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="what-about-people-seeking-loans-for-business-ventures-or-education-how-does-a-persons-income-level-impact-the-ease-with-which-they-can-access-credit-under-your-decision-system" class="level2">
 <h2 class="anchored" data-anchor-id="what-about-people-seeking-loans-for-business-ventures-or-education-how-does-a-persons-income-level-impact-the-ease-with-which-they-can-access-credit-under-your-decision-system">What about people seeking loans for business ventures or education? How does a person’s income level impact the ease with which they can access credit under your decision system?</h2>
