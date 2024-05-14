@@ -218,16 +218,16 @@ background-size: cover;
 </section>
 <section id="part-a-grab-the-data" class="level1">
 <h1>PART A: Grab the Data</h1>
-<div id="cell-3" class="cell" data-execution_count="850">
+<div id="cell-3" class="cell" data-execution_count="976">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/PhilChodrow/ml-notes/main/data/credit-risk/train.csv"</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df_train <span class="op">=</span> pd.read_csv(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="851">
+<div id="cell-4" class="cell" data-execution_count="977">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="851">
+<div class="cell-output cell-output-display" data-execution_count="977">
 <div>
 
 
@@ -427,7 +427,7 @@ background-size: cover;
 <h1>PART B: Explore the Data</h1>
 <section id="summary-tables" class="level2">
 <h2 class="anchored" data-anchor-id="summary-tables">Summary Tables:</h2>
-<div id="cell-7" class="cell" data-execution_count="852">
+<div id="cell-7" class="cell" data-execution_count="978">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Income bins</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">50000</span>, <span class="dv">100000</span>, <span class="dv">200000</span>, <span class="bu">float</span>(<span class="st">'inf'</span>)]  </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -444,9 +444,9 @@ background-size: cover;
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>summary_table2 <span class="op">=</span> df_train.groupby(<span class="st">'person_home_ownership'</span>).agg({<span class="st">'loan_amnt'</span>: <span class="st">'mean'</span>, <span class="st">'loan_int_rate'</span>: <span class="st">'mean'</span>, <span class="st">'cb_person_cred_hist_length'</span>: <span class="st">'mean'</span> }).reset_index()</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>summary_table2.columns <span class="op">=</span> [<span class="st">"Person Home Ownership"</span>, <span class="st">"Mean Loan Amount"</span>, <span class="st">"Mean Interest Rate"</span>, <span class="st">"Mean Credit History Length"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="853">
+<div id="cell-8" class="cell" data-execution_count="979">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>summary_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="853">
+<div class="cell-output cell-output-display" data-execution_count="979">
 <div>
 
 
@@ -491,9 +491,9 @@ background-size: cover;
 </div>
 </div>
 <p>The summary table above demonstrates how a person’s income level affects the loan amount a borrower has access to as well as the average length of credit a borrower is offered.</p>
-<div id="cell-10" class="cell" data-execution_count="854">
+<div id="cell-10" class="cell" data-execution_count="980">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>summary_table2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="854">
+<div class="cell-output cell-output-display" data-execution_count="980">
 <div>
 
 
@@ -546,7 +546,7 @@ background-size: cover;
 </section>
 <section id="data-visualizations" class="level2">
 <h2 class="anchored" data-anchor-id="data-visualizations">Data Visualizations</h2>
-<div id="cell-13" class="cell" data-execution_count="855">
+<div id="cell-13" class="cell" data-execution_count="981">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graph setup</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">20</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -588,12 +588,12 @@ background-size: cover;
 </section>
 <section id="part-c-build-a-model" class="level1">
 <h1>Part C: Build a Model</h1>
-<div id="cell-15" class="cell" data-execution_count="856">
+<div id="cell-15" class="cell" data-execution_count="982">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code comes from: https://scikit-learn.org/stable/auto_examples/feature_selection/plot_select_from_model_diabetes.html#sphx-glr-auto-examples-feature-selection-plot-select-from-model-diabetes-py</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-16" class="cell" data-execution_count="857">
+<div id="cell-16" class="cell" data-execution_count="983">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function borrowed from Palmer's Penguins Blog Post</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> prepare_data(df):</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  df <span class="op">=</span> df.dropna()</span>
@@ -605,7 +605,7 @@ background-size: cover;
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>X_train, y_train <span class="op">=</span> prepare_data(df_train)</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>X_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="857">
+<div class="cell-output cell-output-display" data-execution_count="983">
 <div>
 
 
@@ -908,13 +908,13 @@ background-size: cover;
 </div>
 </div>
 </div>
-<div id="cell-17" class="cell" data-execution_count="858">
+<div id="cell-17" class="cell" data-execution_count="984">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Features <span class="op">=</span> X_train.columns</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>LR <span class="op">=</span> LogisticRegression(max_iter <span class="op">=</span> <span class="dv">1000</span>) </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>LR.fit(X_train[Features], y_train)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>coef <span class="op">=</span> LR.coef_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-18" class="cell" data-execution_count="859">
+<div id="cell-18" class="cell" data-execution_count="985">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>total_profits <span class="op">=</span> []</span>
@@ -934,7 +934,7 @@ background-size: cover;
 </section>
 <section id="part-d-find-a-threshold" class="level1">
 <h1>Part D: Find a Threshold</h1>
-<div id="cell-20" class="cell" data-execution_count="860">
+<div id="cell-20" class="cell" data-execution_count="986">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_profit(df, y, threshold):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create temporary dataframe to store results</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#temp_df = df.copy()</span></span>
@@ -974,7 +974,7 @@ Max Profit: 126739142.43103035
 Profit per Person:  5532.769128695611</code></pre>
 </div>
 </div>
-<div id="cell-21" class="cell" data-execution_count="861">
+<div id="cell-21" class="cell" data-execution_count="987">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>total_profits)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Threshold Value"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Expected Profit ($)"</span>)</span>
@@ -992,21 +992,21 @@ Profit per Person:  5532.769128695611</code></pre>
 </section>
 <section id="part-e-evaluate-your-model-from-the-banks-perspective" class="level1">
 <h1>Part E: Evaluate your Model from the Bank’s Perspective</h1>
-<div id="cell-24" class="cell" data-execution_count="862">
+<div id="cell-24" class="cell" data-execution_count="988">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/PhilChodrow/ml-notes/main/data/credit-risk/test.csv"</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df_test <span class="op">=</span> pd.read_csv(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Prepare the test data and linear regression model, same as before with the training data.</p>
-<div id="cell-26" class="cell" data-execution_count="863">
+<div id="cell-26" class="cell" data-execution_count="989">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>X_test, y_test <span class="op">=</span> prepare_data(df_test)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>TestFeatures <span class="op">=</span> X_test.columns</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>LRE <span class="op">=</span> LogisticRegression(max_iter <span class="op">=</span> <span class="dv">1000</span>) </span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>LRE.fit(X_test[TestFeatures], y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="863">
-<style>#sk-container-id-51 {color: black;}#sk-container-id-51 pre{padding: 0;}#sk-container-id-51 div.sk-toggleable {background-color: white;}#sk-container-id-51 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-51 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-51 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-51 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-51 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-51 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-51 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-51 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-51 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-51 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-51 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-51 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-51 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-51 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-51 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-51 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-51 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-51 div.sk-item {position: relative;z-index: 1;}#sk-container-id-51 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-51 div.sk-item::before, #sk-container-id-51 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-51 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-51 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-51 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-51 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-51 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-51 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-51 div.sk-label-container {text-align: center;}#sk-container-id-51 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-51 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-51" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression(max_iter=1000)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-51" type="checkbox" checked=""><label for="sk-estimator-id-51" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(max_iter=1000)</pre></div></div></div></div></div>
+<div class="cell-output cell-output-display" data-execution_count="989">
+<style>#sk-container-id-53 {color: black;}#sk-container-id-53 pre{padding: 0;}#sk-container-id-53 div.sk-toggleable {background-color: white;}#sk-container-id-53 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-53 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-53 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-53 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-53 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-53 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-53 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-53 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-53 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-53 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-53 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-53 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-53 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-53 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-53 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-53 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-53 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-53 div.sk-item {position: relative;z-index: 1;}#sk-container-id-53 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-53 div.sk-item::before, #sk-container-id-53 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-53 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-53 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-53 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-53 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-53 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-53 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-53 div.sk-label-container {text-align: center;}#sk-container-id-53 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-53 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-53" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression(max_iter=1000)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-53" type="checkbox" checked=""><label for="sk-estimator-id-53" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(max_iter=1000)</pre></div></div></div></div></div>
 </div>
 </div>
-<div id="cell-27" class="cell" data-execution_count="864">
+<div id="cell-27" class="cell" data-execution_count="990">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>test_probs <span class="op">=</span> LRE.predict_proba(X_test[TestFeatures])</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>X_test[<span class="st">"Default Prob"</span>] <span class="op">=</span> test_probs[:, <span class="dv">0</span>]</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1020,7 +1020,7 @@ Profit per Person:  5532.769128695611</code></pre>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>test_total_profits <span class="op">=</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use the calc_profit function with the threshold (0.5656) from earlier that resulted in the highest expected profit.</p>
-<div id="cell-29" class="cell" data-execution_count="866">
+<div id="cell-29" class="cell" data-execution_count="991">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>test_threshold <span class="op">=</span> optimal_threshold</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>total_test_profit <span class="op">=</span> calc_profit(X_test, y_test, test_threshold)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Expected profit with test data: </span><span class="sc">{</span>total_test_profit<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
@@ -1031,7 +1031,7 @@ Profit per Person:  5578.816856325797</code></pre>
 </div>
 </div>
 <p>Let’s see where ths expected profit using the testing data measures up on our graph of expected profits from the training data.</p>
-<div id="cell-31" class="cell" data-execution_count="867">
+<div id="cell-31" class="cell" data-execution_count="992">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale the test_threshold data point accordingly</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>test_threshold <span class="op">=</span> test_threshold <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1050,9 +1050,9 @@ Profit per Person:  5578.816856325797</code></pre>
 </div>
 </div>
 <p>The red dot is the demonstrates the significant negative difference in expected profit between the testing and training data at that optimal training threshold.</p>
-<div id="cell-33" class="cell" data-execution_count="868">
+<div id="cell-33" class="cell" data-execution_count="993">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>X_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="868">
+<div class="cell-output cell-output-display" data-execution_count="993">
 <div>
 
 
@@ -1360,7 +1360,7 @@ Profit per Person:  5578.816856325797</code></pre>
 <h1>Part F: Evaluate your Model from the Borrower’s Perspective</h1>
 <section id="is-it-more-difficult-for-people-in-certain-age-groups-to-access-credit-under-your-proposed-system" class="level2">
 <h2 class="anchored" data-anchor-id="is-it-more-difficult-for-people-in-certain-age-groups-to-access-credit-under-your-proposed-system">Is it more difficult for people in certain age groups to access credit under your proposed system?</h2>
-<div id="cell-36" class="cell" data-execution_count="873">
+<div id="cell-36" class="cell" data-execution_count="994">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Income bins</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="bu">float</span>(<span class="st">'inf'</span>)]  </span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1375,7 +1375,7 @@ Profit per Person:  5578.816856325797</code></pre>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>summary_table3.columns <span class="op">=</span> [<span class="st">"Age Bins"</span>, <span class="st">"Avg Prob of Repay (at Training Optimal Threshold)"</span>, <span class="st">"Avg Bank Assumption"</span>, <span class="st">"Avg Total Profit"</span>]</span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>summary_table3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="873">
+<div class="cell-output cell-output-display" data-execution_count="994">
 <div>
 
 
@@ -1438,10 +1438,11 @@ Profit per Person:  5578.816856325797</code></pre>
 </div>
 </div>
 </div>
+<p>Add explanation here:</p>
 </section>
 <section id="is-it-more-difficult-for-people-to-get-loans-in-order-to-pay-for-medical-expenses-how-does-this-compare-with-the-actual-rate-of-default-in-that-group" class="level2">
 <h2 class="anchored" data-anchor-id="is-it-more-difficult-for-people-to-get-loans-in-order-to-pay-for-medical-expenses-how-does-this-compare-with-the-actual-rate-of-default-in-that-group">Is it more difficult for people to get loans in order to pay for medical expenses? How does this compare with the actual rate of default in that group?</h2>
-<div id="cell-38" class="cell" data-execution_count="922">
+<div id="cell-39" class="cell" data-execution_count="995">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with the individuals with medical loan intent</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Medical_analysis <span class="op">=</span> X_test[X_test[<span class="st">"loan_intent_MEDICAL"</span>]]</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1453,17 +1454,18 @@ Profit per Person:  5578.816856325797</code></pre>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>AvgMedicalProb <span class="op">=</span> Medical_analysis.agg({<span class="st">"Default Prob"</span> : <span class="st">"mean"</span>})</span>
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate summary table to show number of borrowers with </span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>summary_table4 <span class="op">=</span> PredDefaultMedical.groupby(<span class="st">"Correct Assumption"</span>).agg({<span class="st">'Default Unlikely'</span>: <span class="st">'count'</span>})</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>AvgMedicalProb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="922">
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>summary_table4 <span class="op">=</span> PredDefaultMedical.groupby(<span class="st">"Correct Assumption"</span>).agg({<span class="st">'Default Unlikely'</span>: <span class="st">'count'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-40" class="cell" data-execution_count="996">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>AvgMedicalProb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="996">
 <pre><code>Default Prob    0.746771
 dtype: float64</code></pre>
 </div>
 </div>
-<div id="cell-39" class="cell" data-execution_count="923">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>summary_table4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="923">
+<div id="cell-41" class="cell" data-execution_count="997">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>summary_table4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="997">
 <div>
 
 
@@ -1493,9 +1495,531 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
+<p>Add explanation here:</p>
+<div id="cell-43" class="cell" data-execution_count="998">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>X_test.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="998">
+<pre><code>Index(['person_age', 'person_income', 'person_emp_length', 'loan_amnt',
+       'loan_int_rate', 'loan_percent_income', 'cb_person_cred_hist_length',
+       'person_home_ownership_MORTGAGE', 'person_home_ownership_OTHER',
+       'person_home_ownership_OWN', 'person_home_ownership_RENT',
+       'loan_intent_DEBTCONSOLIDATION', 'loan_intent_EDUCATION',
+       'loan_intent_HOMEIMPROVEMENT', 'loan_intent_MEDICAL',
+       'loan_intent_PERSONAL', 'loan_intent_VENTURE',
+       'cb_person_default_on_file_N', 'cb_person_default_on_file_Y',
+       'Default Prob', 'Repay Profit', 'Default Profit', 'Default Unlikely',
+       'Correct Assumption', 'Total Profit', 'age_bins'],
+      dtype='object')</code></pre>
+</div>
+</div>
 </section>
 <section id="what-about-people-seeking-loans-for-business-ventures-or-education-how-does-a-persons-income-level-impact-the-ease-with-which-they-can-access-credit-under-your-decision-system" class="level2">
 <h2 class="anchored" data-anchor-id="what-about-people-seeking-loans-for-business-ventures-or-education-how-does-a-persons-income-level-impact-the-ease-with-which-they-can-access-credit-under-your-decision-system">What about people seeking loans for business ventures or education? How does a person’s income level impact the ease with which they can access credit under your decision system?</h2>
+<p>In answering this question, let’s first look at people with intents to take loans out for business ventures.</p>
+<div id="cell-46" class="cell" data-execution_count="1004">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Venture <span class="op">=</span> X_train[X_train[<span class="st">'loan_intent_VENTURE'</span>]].copy()</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>Venture</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1004">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">loan_intent_VENTURE</th>
+<th data-quarto-table-cell-role="th">loan_intent_EDUCATION</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26059</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">26060</td>
+<td>True</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26061</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">26062</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26063</td>
+<td>False</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+
+<p>22907 rows × 2 columns</p>
+</div>
+</div>
+</div>
+<p>Similar to previous summary tables, we group the incomes into bins in order to understand how a person’s income level might impact the accessibility to credit.We can borrow some of the necessary code from earlier.</p>
+<div id="cell-48" class="cell" data-execution_count="1002">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Income bins</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">50000</span>, <span class="dv">100000</span>, <span class="dv">200000</span>, <span class="bu">float</span>(<span class="st">'inf'</span>)]  </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels for bins</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">'0-50k'</span>, <span class="st">'50k-100k'</span>, <span class="st">'100k-200k'</span>, <span class="st">'200k+'</span>]</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># New column in data frame: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.cut.html</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>Venture[<span class="st">'income_bins'</span>] <span class="op">=</span> pd.cut(Venture[<span class="st">'person_income'</span>], bins<span class="op">=</span>bins, labels<span class="op">=</span>labels, right<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>summary_table5 <span class="op">=</span> Venture.groupby(<span class="st">'income_bins'</span>, observed<span class="op">=</span><span class="va">True</span>).agg({<span class="st">'loan_amnt'</span>: <span class="st">'mean'</span>, <span class="st">'Default Prob'</span>: <span class="st">'mean'</span>}).reset_index()</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>summary_table5.columns <span class="op">=</span> [<span class="st">"Income Bins"</span>, <span class="st">"Mean Loan Amnt"</span>, <span class="st">'Mean Default Prob'</span>]</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>summary_table5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1002">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Income Bins</th>
+<th data-quarto-table-cell-role="th">Mean Loan Amnt</th>
+<th data-quarto-table-cell-role="th">Mean Default Prob</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0-50k</td>
+<td>7110.743034</td>
+<td>0.647473</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>50k-100k</td>
+<td>10320.122951</td>
+<td>0.820480</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>100k-200k</td>
+<td>13556.037736</td>
+<td>0.960362</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>200k+</td>
+<td>17455.241935</td>
+<td>0.999000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Now, let’s do a similar analysis but for people who intend to use their loans for educational purposes.</p>
+<div id="cell-50" class="cell" data-execution_count="1006">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>Education <span class="op">=</span> X_train[X_train[<span class="st">'loan_intent_EDUCATION'</span>]].copy()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>Education</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1006">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">person_age</th>
+<th data-quarto-table-cell-role="th">person_income</th>
+<th data-quarto-table-cell-role="th">person_emp_length</th>
+<th data-quarto-table-cell-role="th">loan_amnt</th>
+<th data-quarto-table-cell-role="th">loan_int_rate</th>
+<th data-quarto-table-cell-role="th">loan_percent_income</th>
+<th data-quarto-table-cell-role="th">cb_person_cred_hist_length</th>
+<th data-quarto-table-cell-role="th">person_home_ownership_MORTGAGE</th>
+<th data-quarto-table-cell-role="th">person_home_ownership_OTHER</th>
+<th data-quarto-table-cell-role="th">person_home_ownership_OWN</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">income_bins_0-50k</th>
+<th data-quarto-table-cell-role="th">income_bins_50k-100k</th>
+<th data-quarto-table-cell-role="th">income_bins_100k-200k</th>
+<th data-quarto-table-cell-role="th">income_bins_200k+</th>
+<th data-quarto-table-cell-role="th">Default Prob</th>
+<th data-quarto-table-cell-role="th">Repay Profit</th>
+<th data-quarto-table-cell-role="th">Default Profit</th>
+<th data-quarto-table-cell-role="th">Default Unlikely</th>
+<th data-quarto-table-cell-role="th">Correct Assumption</th>
+<th data-quarto-table-cell-role="th">Total Profit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>27</td>
+<td>98000</td>
+<td>3.0</td>
+<td>11750</td>
+<td>0.1347</td>
+<td>0.12</td>
+<td>6</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>...</td>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>0.938437</td>
+<td>4613.567568</td>
+<td>-6997.533847</td>
+<td>0</td>
+<td>1</td>
+<td>4613.567568</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>22</td>
+<td>36996</td>
+<td>5.0</td>
+<td>10000</td>
+<td>0.0751</td>
+<td>0.27</td>
+<td>4</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>...</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>0.607182</td>
+<td>2044.334031</td>
+<td>-6426.108799</td>
+<td>0</td>
+<td>1</td>
+<td>2044.334031</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>26</td>
+<td>88500</td>
+<td>10.0</td>
+<td>10000</td>
+<td>0.0859</td>
+<td>0.11</td>
+<td>4</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>...</td>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>0.925889</td>
+<td>2367.371880</td>
+<td>-6341.815694</td>
+<td>0</td>
+<td>1</td>
+<td>2367.371880</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">22</td>
+<td>37</td>
+<td>85000</td>
+<td>3.0</td>
+<td>10000</td>
+<td>0.1427</td>
+<td>0.12</td>
+<td>14</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>...</td>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>0.915536</td>
+<td>4198.253635</td>
+<td>-5891.114794</td>
+<td>0</td>
+<td>1</td>
+<td>4198.253635</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">27</td>
+<td>22</td>
+<td>53000</td>
+<td>2.0</td>
+<td>6500</td>
+<td>0.1065</td>
+<td>0.12</td>
+<td>4</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>...</td>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>0.811192</td>
+<td>1953.405752</td>
+<td>-4016.866450</td>
+<td>0</td>
+<td>1</td>
+<td>1953.405752</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26043</td>
+<td>29</td>
+<td>48000</td>
+<td>5.0</td>
+<td>10000</td>
+<td>0.1273</td>
+<td>0.21</td>
+<td>7</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>...</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>0.707227</td>
+<td>3679.192509</td>
+<td>-6014.542748</td>
+<td>0</td>
+<td>1</td>
+<td>3679.192509</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">26045</td>
+<td>40</td>
+<td>136000</td>
+<td>5.0</td>
+<td>21000</td>
+<td>0.0999</td>
+<td>0.15</td>
+<td>13</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>...</td>
+<td>False</td>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+<td>0.963747</td>
+<td>5875.219617</td>
+<td>-13086.951569</td>
+<td>0</td>
+<td>1</td>
+<td>5875.219617</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26053</td>
+<td>24</td>
+<td>110000</td>
+<td>1.0</td>
+<td>11200</td>
+<td>0.0749</td>
+<td>0.10</td>
+<td>4</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>...</td>
+<td>False</td>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+<td>0.963373</td>
+<td>2283.035050</td>
+<td>-7198.985446</td>
+<td>0</td>
+<td>1</td>
+<td>2283.035050</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">26059</td>
+<td>36</td>
+<td>150000</td>
+<td>8.0</td>
+<td>3000</td>
+<td>0.0729</td>
+<td>0.02</td>
+<td>17</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>...</td>
+<td>False</td>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+<td>0.996879</td>
+<td>593.840622</td>
+<td>-1932.967484</td>
+<td>0</td>
+<td>1</td>
+<td>593.840622</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26063</td>
+<td>25</td>
+<td>60000</td>
+<td>5.0</td>
+<td>21450</td>
+<td>0.0729</td>
+<td>0.36</td>
+<td>4</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>...</td>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>0.537119</td>
+<td>4245.960448</td>
+<td>-13820.717511</td>
+<td>0</td>
+<td>0</td>
+<td>13820.717511</td>
+</tr>
+</tbody>
+</table>
+
+<p>4528 rows × 29 columns</p>
+</div>
+</div>
+</div>
+<div id="cell-51" class="cell" data-execution_count="1008">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Income bins</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#bins = [0, 50000, 100000, 200000, float('inf')]  </span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels for bins</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">#labels = ['0-50k', '50k-100k', '100k-200k', '200k+']</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># New column in data frame: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.cut.html</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>Education[<span class="st">'income_bins'</span>] <span class="op">=</span> pd.cut(Education[<span class="st">'person_income'</span>], bins<span class="op">=</span>bins, labels<span class="op">=</span>labels, right<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>summary_table6 <span class="op">=</span> Education.groupby(<span class="st">'income_bins'</span>, observed<span class="op">=</span><span class="va">True</span>).agg({<span class="st">'loan_amnt'</span>: <span class="st">'mean'</span>, <span class="st">'Default Prob'</span>: <span class="st">'mean'</span>}).reset_index()</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>summary_table6.columns <span class="op">=</span> [<span class="st">"Income Bins"</span>, <span class="st">"Mean Loan Amnt"</span>, <span class="st">'Mean Default Prob'</span>]</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>summary_table6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1008">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Income Bins</th>
+<th data-quarto-table-cell-role="th">Mean Loan Amnt</th>
+<th data-quarto-table-cell-role="th">Mean Default Prob</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0-50k</td>
+<td>6936.549946</td>
+<td>0.658564</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>50k-100k</td>
+<td>10460.900815</td>
+<td>0.815266</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>100k-200k</td>
+<td>13602.153558</td>
+<td>0.955951</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>200k+</td>
+<td>17583.076923</td>
+<td>0.998853</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="part-g-write-and-reflect" class="level1">
