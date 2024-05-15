@@ -213,8 +213,8 @@ background-size: cover;
 <h3 class="anchored" data-anchor-id="link-to-perceptron-on-github">LINK TO PERCEPTRON ON GITHUB:</h3>
 <p>https://github.com/lucasf46/lucasf46.github.io/blob/main/posts/BlogPost3/perceptron.py</p>
 </section>
-<section id="introduction" class="level1">
-<h1>INTRODUCTION:</h1>
+<section id="abstract" class="level1">
+<h1>ABSTRACT:</h1>
 <p>The purpose of this blog post is to implement the perceptron algorithm and to understand how the algorithm runs with various types of data. In this particular case, there are three types of data the perceptron runs on: linearly separable data, non-linearly separable data, and data with more than 2 features. The first way to visualize the effectiveness of the perceptron is to track the algorithms calculation of loss as it searches for an ideal weight vector. A second way is to see the actual classification line shift on top of the graphed data.</p>
 </section>
 <section id="perceptron-grad" class="level1">
@@ -696,11 +696,20 @@ background-size: cover;
 </div>
 </div>
 <p>Based on the graph, the perceptron on data with 3+ dimensions converged, finding a weight vector such that the loss value is minimized to 0, therefore the data is linearly separable.</p>
-<p>The runtime complexity of the perceptron algorithm is O(n * d) where n is the number of data points.</p>
+<p>To analyze the runtime of the perceptron algorithm, lets look at the pseudocode provided in the notes:</p>
+<pre><code>p = number of features
+
+Start with random weight vector W(0) that has length p
+Pick a random point i in X, also has length p
+Compute dot product of point i and W(0)
+If dot product &lt; 0, perform update
+    W(t + 1) = W(t) + (yi * xi)</code></pre>
+<p>For each iteration of our Perceptron update, we compute a dot product of two vectors, each with length p equal to the amount of features. In computing this dot product, we preform p multiplications (element wise multiplication) and p-1 additions (summation). If we assume each of these operations to be time constant operations, the time complexity of one step is 2p-1 or O(p).</p>
 </section>
 </section>
-<section id="abstract" class="level1">
-<h1>ABSTRACT</h1>
+<section id="conclusion" class="level1">
+<h1>CONCLUSION</h1>
+<p>In conclusion, this blog post helps to show how the perceptron algorithm is implemented and the limitations of its ability to converge to a weight vector where the loss value is minimized with different types of data (linearly separable, non-linearly separable, 3+ dimensional). The third experiment demonstrated how the only factor that affects the perceptron’s functionality is whether the data being used is linearly separable. The number of dimensions has no affect on the algorithm.</p>
 
 
 </section>
