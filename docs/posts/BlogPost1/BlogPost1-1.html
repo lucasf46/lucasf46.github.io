@@ -467,16 +467,13 @@ background-size: cover;
 <section id="explore" class="level1">
 <h1>EXPLORE:</h1>
 <p>Create two visualizations of the data and one summary table.</p>
-<div id="cell-7" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/PhilChodrow/ml-notes/main/data/palmer-penguins/palmer-penguins.csv"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(url)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>SumTable <span class="op">=</span> df.groupby([<span class="st">'Species'</span>, <span class="st">'Sex'</span>]).aggregate({<span class="st">'Body Mass (g)'</span>: <span class="st">'mean'</span>})</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>SumTable2 <span class="op">=</span> df.groupby([<span class="st">'Species'</span>, <span class="st">'Island'</span>]).aggregate({<span class="st">'Culmen Length (mm)'</span>: <span class="st">'mean'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-7" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>SumTable <span class="op">=</span> train.groupby([<span class="st">'Species'</span>, <span class="st">'Sex'</span>]).aggregate({<span class="st">'Body Mass (g)'</span>: <span class="st">'mean'</span>})</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>SumTable2 <span class="op">=</span> train.groupby([<span class="st">'Species'</span>, <span class="st">'Island'</span>]).aggregate({<span class="st">'Culmen Length (mm)'</span>: <span class="st">'mean'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="23">
+<div id="cell-8" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>SumTable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="34">
 <div>
 
 
@@ -497,20 +494,20 @@ background-size: cover;
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Adelie Penguin (Pygoscelis adeliae)</td>
 <td data-quarto-table-cell-role="th">FEMALE</td>
-<td>3368.835616</td>
+<td>3350.471698</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">MALE</td>
-<td>4043.493151</td>
+<td>4052.868852</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Chinstrap penguin (Pygoscelis antarctica)</td>
 <td data-quarto-table-cell-role="th">FEMALE</td>
-<td>3527.205882</td>
+<td>3523.387097</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">MALE</td>
-<td>3938.970588</td>
+<td>4005.769231</td>
 </tr>
 <tr class="odd">
 <td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">Gentoo penguin (Pygoscelis papua)</td>
@@ -519,11 +516,11 @@ background-size: cover;
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">FEMALE</td>
-<td>4679.741379</td>
+<td>4684.693878</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">MALE</td>
-<td>5484.836066</td>
+<td>5476.704545</td>
 </tr>
 </tbody>
 </table>
@@ -582,16 +579,16 @@ background-size: cover;
 </div>
 </div>
 <p>This summary table examines the average culmen length of penguin species on each island. Looking closely, we see that only Adele and Gentoo inhabit Biscoe island and the difference in their average culmen lengths is roughly 9 millimeters. Similarly, only Adelie and Chinstrap live on Dream island, and the average difference in culmen length there is roughly 10 millimeters, a significant amount.</p>
-<div id="cell-12" class="cell" data-execution_count="25">
+<div id="cell-12" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot first scatterplot</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'Culmen Length (mm)'</span>, y<span class="op">=</span><span class="st">'Culmen Depth (mm)'</span>, hue<span class="op">=</span> <span class="st">'Species'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>train, x<span class="op">=</span><span class="st">'Culmen Length (mm)'</span>, y<span class="op">=</span><span class="st">'Culmen Depth (mm)'</span>, hue<span class="op">=</span> <span class="st">'Species'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Culmen Length vs. Culmen Depth by Species'</span>)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot second scatterplot</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to get penguins living on Dream Island</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>Island_Dream_df <span class="op">=</span> df[df[<span class="st">'Island'</span>] <span class="op">==</span> <span class="st">'Dream'</span>]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>Island_Dream_df <span class="op">=</span> train[train[<span class="st">'Island'</span>] <span class="op">==</span> <span class="st">'Dream'</span>]</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">'Culmen Length (mm)'</span>, y<span class="op">=</span><span class="st">'Culmen Depth (mm)'</span>, data<span class="op">=</span> Island_Dream_df, hue<span class="op">=</span> <span class="st">'Species'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Culmen Length vs. Culmen Depth on Dream Island'</span>)</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
