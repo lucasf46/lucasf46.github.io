@@ -2230,19 +2230,14 @@ Profit per Person:  5578.816856325797</code></pre>
 </div>
 </div>
 <div id="cell-64" class="cell" data-execution_count="1008">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Income bins</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#bins = [0, 50000, 100000, 200000, float('inf')]  </span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Labels for bins</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">#labels = ['0-50k', '50k-100k', '100k-200k', '200k+']</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># New column in data frame: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.cut.html</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>Education[<span class="st">'income_bins'</span>] <span class="op">=</span> pd.cut(Education[<span class="st">'person_income'</span>], bins<span class="op">=</span>bins, labels<span class="op">=</span>labels, right<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>summary_table6 <span class="op">=</span> Education.groupby(<span class="st">'income_bins'</span>, observed<span class="op">=</span><span class="va">True</span>).agg({<span class="st">'loan_amnt'</span>: <span class="st">'mean'</span>, <span class="st">'Default Prob'</span>: <span class="st">'mean'</span>}).reset_index()</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>summary_table6.columns <span class="op">=</span> [<span class="st">"Income Bins"</span>, <span class="st">"Mean Loan Amnt"</span>, <span class="st">'Mean Default Prob'</span>]</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>summary_table6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># New column in data frame: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.cut.html</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>Education[<span class="st">'income_bins'</span>] <span class="op">=</span> pd.cut(Education[<span class="st">'person_income'</span>], bins<span class="op">=</span>bins, labels<span class="op">=</span>labels, right<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>summary_table6 <span class="op">=</span> Education.groupby(<span class="st">'income_bins'</span>, observed<span class="op">=</span><span class="va">True</span>).agg({<span class="st">'loan_amnt'</span>: <span class="st">'mean'</span>, <span class="st">'Default Prob'</span>: <span class="st">'mean'</span>}).reset_index()</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>summary_table6.columns <span class="op">=</span> [<span class="st">"Income Bins"</span>, <span class="st">"Mean Loan Amnt"</span>, <span class="st">'Mean Default Prob'</span>]</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>summary_table6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1008">
 <div>
 
@@ -2294,6 +2289,9 @@ Profit per Person:  5578.816856325797</code></pre>
 <h1>Part G: Write and Reflect</h1>
 <section id="considering-that-people-seeking-loans-for-medical-expense-have-high-rates-of-default-is-it-fair-that-it-is-more-difficult-for-them-to-obtain-access-to-credit" class="level2">
 <h2 class="anchored" data-anchor-id="considering-that-people-seeking-loans-for-medical-expense-have-high-rates-of-default-is-it-fair-that-it-is-more-difficult-for-them-to-obtain-access-to-credit">Considering that people seeking loans for medical expense have high rates of default, is it fair that it is more difficult for them to obtain access to credit?</h2>
+<p>Fairness in the context of machine learning refers to the idea that algorithmic decision-making processes should not systematically favor or disadvantage individuals or groups based on sensitive attributes such as race, gender, ethnicity, religion, or socioeconomic status. Fairness means ensuring that the outcomes of machine learning models are equitable and unbiased across different demographic groups, and thus promoting equality while minimizing discrimination.</p>
+<p>If the difficulty in receiving credit for medical expenses is based on valid risk assessment, where individuals seeking such loans genuinely have a higher likelihood of default, then it could be considered fair. However, if the difficulty in accessing credit for medical expenses stems from systemic biases or discriminatory practices embedded in the lending process or the algorithms used to assess whether a person is creditworthy, then it would be considered unfair. In answering the previous questions, a strong correlation exists between a borrower’s income and the likelihood that the model offers them a loan.</p>
+<p>In conclusion, this blog post looks at the credit-risk prediction problem that institutions like banks have to deal with. Models can be used to determine whether an individual is likely to repay a loan if offered one, but using profit as the gauge for a model’s success can effectively lead to systematic discrimination among certain demographics of people.</p>
 
 
 </section>
