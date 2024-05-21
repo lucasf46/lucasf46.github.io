@@ -21,6 +21,20 @@
     "text": "Math\nIn addition to regular text using the Markdown specification, you can also write mathematics, enclosed between dollar signs. The syntax for writing math is very similar to the syntax used in the \\(\\LaTeX\\) markup language. For example, $f(x) \\approx y$ renders to \\(f(x) \\approx y\\). To place complex mathematical expressions on their own lines, use double dollar signs. For example, the expression\n$$\\mathcal{L}(a, b) = \\sum_{i = 1}^n (ax_i + b - y_i)^2$$\nrenders to:\n\\[\\mathcal{L}(a, b) = \\sum_{i = 1}^n (ax_i + b - y_i)^2\\;.\\]\nBehind the scenes, math is powered by the MathJax engine. For more on how to write math, check this handy tutorial and quick reference."
   },
   {
+    "objectID": "posts/BlogPost5/BlogPost5-5.html",
+    "href": "posts/BlogPost5/BlogPost5-5.html",
+    "title": "Newton’s Method for Logistic Regression",
+    "section": "",
+    "text": "https://github.com/lucasf46/lucasf46.github.io/blob/main/posts/BlogPost5/NewtonOptimizer.py"
+  },
+  {
+    "objectID": "posts/BlogPost5/BlogPost5-5.html#link-to-logistic-regression-newtons-method-on-github",
+    "href": "posts/BlogPost5/BlogPost5-5.html#link-to-logistic-regression-newtons-method-on-github",
+    "title": "Newton’s Method for Logistic Regression",
+    "section": "",
+    "text": "https://github.com/lucasf46/lucasf46.github.io/blob/main/posts/BlogPost5/NewtonOptimizer.py"
+  },
+  {
     "objectID": "posts/BlogPost5/BlogPost5-5.html#newtons-method-computation-calculation",
     "href": "posts/BlogPost5/BlogPost5-5.html#newtons-method-computation-calculation",
     "title": "Newton’s Method for Logistic Regression",

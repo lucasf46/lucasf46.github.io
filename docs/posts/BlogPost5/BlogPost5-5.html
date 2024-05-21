@@ -240,6 +240,7 @@ window.Quarto = {
 
 <section id="link-to-logistic-regression-newtons-method-on-github" class="level2">
 <h2 class="anchored" data-anchor-id="link-to-logistic-regression-newtons-method-on-github">LINK TO LOGISTIC REGRESSION NEWTON’S METHOD ON GITHUB:</h2>
+<p>https://github.com/lucasf46/lucasf46.github.io/blob/main/posts/BlogPost5/NewtonOptimizer.py</p>
 </section>
 <section id="introduction" class="level1">
 <h1>INTRODUCTION</h1>
@@ -397,7 +398,7 @@ window.Quarto = {
 </div>
 <div id="cell-32" class="cell" data-execution_count="401">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Newton_lossvec <span class="op">=</span> []</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">200</span>):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">400</span>):</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    Newton_loss <span class="op">=</span> Newton_Opt.step(X, y, alpha <span class="op">=</span> <span class="dv">500</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    Newton_lossvec.append(Newton_loss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -412,6 +413,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>As we can see, with a sufficiently large alpha value, the loss value remains constant at a value above zero, thereby not converging.</p>
 </section>
 <section id="operation-counting" class="level1">
 <h1>OPERATION COUNTING</h1>
