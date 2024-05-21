@@ -101,6 +101,18 @@ class LogisticRegression(LinearModel):
         return gradient
 
     def logistic_hessian(self, X, y):
+
+        """
+        Compute the Hessian matrix.
+
+        ARGUMENTS:
+            X, torch.Tensor: The feature matrix where each row is a feature vector. The size of X is (n, p),
+                               where n is the number of data points and p is the number of features.
+            y, torch.Tensor: The true labels for each data point in X.
+
+        RETURNS:
+            Returns a matrix with the diagonal entries equal to dkk(w) = sigmoid(sk)(1 - sigmoid(sk)).
+        """
         
         s_i = self.score(X)
         sigmoid_si = torch.sigmoid(s_i)
@@ -145,6 +157,19 @@ class NewtonOptimizer(LogisticRegression):
         self.model = model 
 
     def step(self, X, y, alpha):
+
+        """
+        Perform one step of Newton's Method optimization on the logistic regression model's parameters.
+
+        ARGUMENTS:
+            X, torch.Tensor: The feature matrix. Size of X is (n, p), where n is the number of data points,
+                              and p is the number of features.
+            y, torch.Tensor: The true labels for each data point in X. 
+            alpha, float: The learning rate, a scalar that scales the gradient.
+
+        RETURNS:
+            torch.Tensor: The logistic loss after updating the model's parameters.
+        """
 
         gradient = self.model.logistic_grad(X, y)
         loss = self.model.logistic_loss(X, y)
