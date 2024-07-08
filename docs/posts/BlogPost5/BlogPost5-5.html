@@ -245,7 +245,7 @@ window.Quarto = {
 <section id="introduction" class="level1">
 <h1>INTRODUCTION</h1>
 <p>This blog post implements the Newton Optimizer for Logistic Regression. The Newton Optimizer is a second-order optimization technique that uses the Hessian matrix to find the optimal weights for the logistic regression model. After implementing Logistic Regression with the Newton Optimizer, we will conduct three experiments to demonstrate the advantages and disadvantages of the method in determining the optimal weight vector, by manipulating the alpha value. In conclusion, this post will look at the computational costs of Newton’s method compared to gradient descent.</p>
-<div id="cell-3" class="cell" data-execution_count="386">
+<div id="cell-3" class="cell" data-execution_count="421">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext autoreload</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> NewtonOptimizer <span class="im">import</span> LogisticRegression, GradientDescentOptimizer, NewtonOptimizer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -254,13 +254,13 @@ window.Quarto = {
   %reload_ext autoreload</code></pre>
 </div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="387">
+<div id="cell-4" class="cell" data-execution_count="422">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'seaborn-v0_8-whitegrid'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s start by borrowing code from the Logistic Regression blog post that generates some linearly separable data for our Newton Optimizer to work with.</p>
-<div id="cell-6" class="cell" data-execution_count="388">
+<div id="cell-6" class="cell" data-execution_count="423">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classification_data(n_points <span class="op">=</span> <span class="dv">300</span>, noise <span class="op">=</span> <span class="fl">0.2</span>, p_dims <span class="op">=</span> <span class="dv">2</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> torch.arange(n_points) <span class="op">&gt;=</span> <span class="bu">int</span>(n_points<span class="op">/</span><span class="dv">2</span>)</span>
@@ -272,7 +272,7 @@ window.Quarto = {
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> classification_data(n_points <span class="op">=</span> <span class="dv">500</span>, noise <span class="op">=</span> <span class="fl">0.5</span>, p_dims <span class="op">=</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="389">
+<div id="cell-7" class="cell" data-execution_count="424">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_classification_data(X, y, ax):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> X.shape[<span class="dv">1</span>] <span class="op">==</span> <span class="dv">3</span>, <span class="st">"This function only works for data created with p_dims == 2"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    targets <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>]</span>
@@ -282,14 +282,14 @@ window.Quarto = {
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        ax.scatter(X[ix,<span class="dv">0</span>], X[ix,<span class="dv">1</span>], s <span class="op">=</span> <span class="dv">20</span>,  c <span class="op">=</span> y[ix], facecolors <span class="op">=</span> <span class="st">"none"</span>, edgecolors <span class="op">=</span> <span class="st">"darkgrey"</span>, cmap <span class="op">=</span> <span class="st">"BrBG"</span>, vmin <span class="op">=</span> <span class="op">-</span><span class="dv">2</span>, vmax <span class="op">=</span> <span class="dv">2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, marker <span class="op">=</span> markers[i])</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(xlabel <span class="op">=</span> <span class="vs">r"$x_1$"</span>, ylabel <span class="op">=</span> <span class="vs">r"$x_2$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="390">
+<div id="cell-8" class="cell" data-execution_count="425">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_line(w, x_min, x_max, ax, <span class="op">**</span>kwargs):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    w_ <span class="op">=</span> w.flatten()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> torch.linspace(x_min, x_max, <span class="dv">101</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="op">-</span>(w_[<span class="dv">0</span>]<span class="op">*</span>x <span class="op">+</span> w_[<span class="dv">2</span>])<span class="op">/</span>w_[<span class="dv">1</span>]</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> ax.plot(x, y, <span class="op">**</span>kwargs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="391">
+<div id="cell-9" class="cell" data-execution_count="426">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> classification_data()</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plot_classification_data(X, y, ax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -307,18 +307,18 @@ window.Quarto = {
 <h1>EXPERIMENT 1</h1>
 <p>Now that we have some linearly separable data to work with, our first experiment involves choosing an alpha value such that Newton’s Method properly converges to the correct weight vector w.</p>
 <p>First, we initialize our model:</p>
-<div id="cell-14" class="cell" data-execution_count="392">
+<div id="cell-14" class="cell" data-execution_count="427">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>LR <span class="op">=</span> LogisticRegression() </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> NewtonOptimizer(LR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We are using an alpha value of 0.25 in this first experiment.</p>
-<div id="cell-16" class="cell" data-execution_count="393">
+<div id="cell-16" class="cell" data-execution_count="428">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>loss_vec <span class="op">=</span> []</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6000</span>):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> opt.step(X, y, alpha <span class="op">=</span> <span class="fl">0.25</span>)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    loss_vec.append(loss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-17" class="cell" data-execution_count="394">
+<div id="cell-17" class="cell" data-execution_count="429">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>opt_loss <span class="op">=</span> loss_vec[<span class="bu">len</span>(loss_vec) <span class="op">-</span> <span class="dv">1</span>]</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
@@ -336,7 +336,7 @@ window.Quarto = {
 </div>
 </div>
 <p>After 6000 iterations, and an alpha value of 0.25, we see that the model seems to be working. The loss value converges to a value nearly 0 and visually, the decision boundary splits the two clusters of data nicely.</p>
-<div id="cell-19" class="cell" data-execution_count="395">
+<div id="cell-19" class="cell" data-execution_count="430">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.plot(loss_vec)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>labs <span class="op">=</span> plt.gca().<span class="bu">set</span>(xlabel <span class="op">=</span> <span class="st">"Number of Iterations"</span>, ylabel <span class="op">=</span> <span class="st">"Loss Value"</span>, title <span class="op">=</span> <span class="st">"Experiment 1: Newton's Method LR (alpha = 0.25)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -353,14 +353,14 @@ window.Quarto = {
 <h1>EXPERIMENT 2</h1>
 <p>We now look to find the circumstances under which Logistic Regression with Newton’s Method converges noticeably faster than standard gradient descent, in the sense of decreasing empirical risk.</p>
 <p>First, we initialize two Logistic Regression models, one with Newton’s Method and the other with standard gradient descent.</p>
-<div id="cell-24" class="cell" data-execution_count="396">
+<div id="cell-24" class="cell" data-execution_count="431">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Newton_LR <span class="op">=</span> LogisticRegression()</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Standard_LR <span class="op">=</span> LogisticRegression()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Newton_Opt <span class="op">=</span> NewtonOptimizer(Newton_LR)</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>Standard_Opt <span class="op">=</span> GradientDescentOptimizer(Standard_LR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-25" class="cell" data-execution_count="397">
+<div id="cell-25" class="cell" data-execution_count="432">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Standard_lossVec <span class="op">=</span> []</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6000</span>):</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    Standard_loss <span class="op">=</span> Standard_Opt.step(X, y, alpha <span class="op">=</span> <span class="fl">0.01</span>, beta <span class="op">=</span> <span class="dv">0</span>)</span>
@@ -371,7 +371,7 @@ window.Quarto = {
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    Newton_loss <span class="op">=</span> Newton_Opt.step(X, y, alpha <span class="op">=</span> <span class="fl">0.5</span>)</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    Newton_lossVec.append(Newton_loss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-26" class="cell" data-execution_count="398">
+<div id="cell-26" class="cell" data-execution_count="433">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.plot(Standard_lossVec, color <span class="op">=</span> <span class="st">"red"</span>, label <span class="op">=</span> <span class="st">"Standard Gradient Descent"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.plot(Newton_lossVec, color <span class="op">=</span> <span class="st">"tan"</span>, label <span class="op">=</span> <span class="st">"Newton's Method"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
@@ -389,22 +389,68 @@ window.Quarto = {
 <section id="experiment-3" class="level1">
 <h1>EXPERIMENT 3</h1>
 <p>We now explore a scenario where if the alpha value is too large, the Logistic Regression model with Newton’s Method, will not converge to a loss of 0 and produce an optimal weight vector.</p>
-<div id="cell-30" class="cell" data-execution_count="399">
+<div id="cell-30" class="cell" data-execution_count="434">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Newton_LR <span class="op">=</span> LogisticRegression() </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>Newton_Opt <span class="op">=</span> NewtonOptimizer(Newton_LR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-31" class="cell" data-execution_count="400">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> classification_data(n_points<span class="op">=</span><span class="dv">300</span>, noise <span class="op">=</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-31" class="cell" data-execution_count="435">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> classification_data(n_points<span class="op">=</span><span class="dv">300</span>, noise <span class="op">=</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-32" class="cell" data-execution_count="401">
+<div id="cell-32" class="cell" data-execution_count="436">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Newton_lossvec <span class="op">=</span> []</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">400</span>):</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    Newton_loss <span class="op">=</span> Newton_Opt.step(X, y, alpha <span class="op">=</span> <span class="dv">500</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    Newton_lossvec.append(Newton_loss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Unexpected exception formatting exception. Falling back to standard exception</code></pre>
 </div>
-<div id="cell-33" class="cell" data-execution_count="402">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.plot(Newton_lossvec)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>labs <span class="op">=</span> plt.gca().<span class="bu">set</span>(xlabel <span class="op">=</span> <span class="st">"Number of Iterations"</span>, ylabel <span class="op">=</span> <span class="st">"Loss Value"</span>, title <span class="op">=</span> <span class="st">"Experiment 3: Newton's Method LR: Sufficiently large alpha"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Traceback (most recent call last):
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/IPython/core/interactiveshell.py", line 3526, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File "/var/folders/f6/sc30hmgd7rscfdx61dtgjxn40000gn/T/ipykernel_6371/2238967639.py", line 3, in &lt;module&gt;
+    Newton_loss = Newton_Opt.step(X, y, alpha = 500)
+  File "/Users/lucasflemming/MachineLearningSpring24/lucasf46.github.io/posts/BlogPost5/NewtonOptimizer.py", line 177, in step
+    self.model.w = self.model.w - (alpha * torch.inverse(hessian_matrix)) @ gradient
+RuntimeError: inverse_cpu: The diagonal element 1 is zero, the inversion could not be completed because the input matrix is singular.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/IPython/core/interactiveshell.py", line 2120, in showtraceback
+    stb = self.InteractiveTB.structured_traceback(
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/IPython/core/ultratb.py", line 1435, in structured_traceback
+    return FormattedTB.structured_traceback(
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/IPython/core/ultratb.py", line 1326, in structured_traceback
+    return VerboseTB.structured_traceback(
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/IPython/core/ultratb.py", line 1173, in structured_traceback
+    formatted_exception = self.format_exception_as_a_whole(etype, evalue, etb, number_of_lines_of_context,
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/IPython/core/ultratb.py", line 1088, in format_exception_as_a_whole
+    frames.append(self.format_record(record))
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/IPython/core/ultratb.py", line 970, in format_record
+    frame_info.lines, Colors, self.has_colors, lvals
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/IPython/core/ultratb.py", line 792, in lines
+    return self._sd.lines
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/stack_data/utils.py", line 145, in cached_property_wrapper
+    value = obj.__dict__[self.func.__name__] = self.func(obj)
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/stack_data/core.py", line 698, in lines
+    pieces = self.included_pieces
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/stack_data/utils.py", line 145, in cached_property_wrapper
+    value = obj.__dict__[self.func.__name__] = self.func(obj)
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/stack_data/core.py", line 649, in included_pieces
+    pos = scope_pieces.index(self.executing_piece)
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/stack_data/utils.py", line 145, in cached_property_wrapper
+    value = obj.__dict__[self.func.__name__] = self.func(obj)
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/stack_data/core.py", line 628, in executing_piece
+    return only(
+  File "/Users/lucasflemming/anaconda3/envs/ml-0451/lib/python3.9/site-packages/executing/executing.py", line 164, in only
+    raise NotOneValueFound('Expected one value, found 0')
+executing.executing.NotOneValueFound: Expected one value, found 0</code></pre>
+</div>
+</div>
+<div id="cell-33" class="cell" data-execution_count="437">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plt.plot(Newton_lossvec)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>labs <span class="op">=</span> plt.gca().<span class="bu">set</span>(xlabel <span class="op">=</span> <span class="st">"Number of Iterations"</span>, ylabel <span class="op">=</span> <span class="st">"Loss Value"</span>, title <span class="op">=</span> <span class="st">"Experiment 3: Newton's Method LR: Sufficiently large alpha"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
